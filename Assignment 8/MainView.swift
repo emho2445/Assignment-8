@@ -48,7 +48,7 @@ struct MainView: View {
                                     .frame(alignment: .topLeading)
                             }
                             
-                            Rectangle()
+                            //Rectangle()
                         }
                     }
                     
