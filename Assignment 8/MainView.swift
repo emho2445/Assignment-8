@@ -16,6 +16,11 @@ import Foundation
 import SwiftUI
 
 struct MainView: View {
+    
+    @State private var height: CGFloat = 0
+    
+    let targetHeight: CGFloat = 100
+    
     var body: some View {
         NavigationView{
             ScrollView{
@@ -46,10 +51,29 @@ struct MainView: View {
                                     .background(Color("Light Tan"))
                                     .clipShape(Capsule())
                                     .frame(alignment: .topLeading)
+                                Spacer()
                             }
-                            
+                            Spacer()
                             //Rectangle()
+                            
+                            Text("Attempted Box Here")
+                                            .foregroundColor(.black)
+                                            .font(.headline)
+                                            .background{
+                                                VStack{
+                                                    Spacer(minLength: 0)
+                                                    RoundedRectangle(cornerRadius: 5)
+                                                        .frame(width: 100, height: height)
+                                                        .foregroundColor(.red)
+                                                        .onTapGesture {
+                                                            withAnimation(.linear(duration: 5)) {
+                                                                height = targetHeight
+                                                            }
+                                                        }
+                                                }.frame(height: targetHeight)
+                                            }
                         }
+                        .padding()
                     }
                     
                     ZStack{
@@ -57,7 +81,7 @@ struct MainView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(20)
-                        Group{
+                        VStack{
                             HStack{
                                 Text("Ree")
                                     .padding()
@@ -77,8 +101,12 @@ struct MainView: View {
                                     .background(Color("Light Tan"))
                                     .clipShape(Capsule())
                                     .frame(alignment: .topLeading)
+                                Spacer()
                             }
+                            Spacer()
+                            
                         }
+                        .padding()
                     }
                     
                     ZStack{
@@ -86,7 +114,7 @@ struct MainView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(20)
-                        Group{
+                        VStack{
                             HStack{
                                 Text("Ree")
                                     .padding()
@@ -106,8 +134,11 @@ struct MainView: View {
                                     .background(Color("Light Tan"))
                                     .clipShape(Capsule())
                                     .frame(alignment: .topLeading)
+                                Spacer()
                             }
+                            Spacer()
                         }
+                        .padding()
                     }
                 }
                 .padding()
