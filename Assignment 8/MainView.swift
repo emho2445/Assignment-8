@@ -17,9 +17,17 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var height: CGFloat = 0
+    @State var isExpandedPastry = false
     
-    let targetHeight: CGFloat = 100
+    @State var isExpandedClams = false
+    
+    @State var isExpandedCake = false
+    
+    @State var heartStatusLaCuisine = false
+    
+    @State var heartStatusTrattoria = false
+    
+    @State var heartStatusSweets = false
     
     var body: some View {
         NavigationView{
@@ -55,97 +63,214 @@ struct MainView: View {
                             }
                             Spacer()
                             //Rectangle()
-                            
-                            Text("Attempted Box Here")
-                                            .foregroundColor(.black)
-                                            .font(.headline)
-                                            .background{
-                                                VStack{
-                                                    Spacer(minLength: 0)
-                                                    RoundedRectangle(cornerRadius: 5)
-                                                        .frame(width: 100, height: height)
-                                                        .foregroundColor(.red)
-                                                        .onTapGesture {
-                                                            withAnimation(.linear(duration: 5)) {
-                                                                height = targetHeight
-                                                            }
-                                                        }
-                                                }.frame(height: targetHeight)
+                        VStack{
+                            VStack{
+                                HStack{
+                                    Image("Headshot")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 40, height: 40, alignment: .top)
+                                        .clipShape(Circle())
+                                    Text("Emma Hopson")
+                                    Spacer()
+                                    if heartStatusLaCuisine == false{
+                                        Image(systemName: "heart")
+                                            .onTapGesture {
+                                                heartStatusLaCuisine = true
                                             }
-                        }
-                        .padding()
-                    }
-                    
-                    ZStack{
-                        Image("ClamPasta")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(20)
-                        VStack{
-                            HStack{
-                                Text("Ree")
-                                    .padding()
-                                
-                                    .background(Color("Salmon"))
-                                    .clipShape(Capsule())
-                                    .frame(alignment: .topLeading)
-                                Text("Experience")
-                                    .padding()
-                                
-                                    .background(Color("Light Tan"))
-                                    .clipShape(Capsule())
-                                    .frame(alignment: .topLeading)
-                                Text("Class")
-                                    .padding()
-                                
-                                    .background(Color("Light Tan"))
-                                    .clipShape(Capsule())
-                                    .frame(alignment: .topLeading)
-                                Spacer()
+                                    }else{
+                                        Image(systemName: "heart.fill")
+                                            .onTapGesture {
+                                                heartStatusLaCuisine = false
+                                            }
+                                    }
+                                    Image(systemName: "pin.fill")
+                                    Image(systemName: "message.badge")
+                                }
+                                Text("October 19, 2023")
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(alignment: .leading) //Don't know why this isn't doing anything
+                                Text("La Cuisine Paris: Dessert Cooking Class")
+                                    .aspectRatio(contentMode: .fill)
                             }
-                            Spacer()
-                            
-                        }
-                        .padding()
-                    }
-                    
-                    ZStack{
-                        Image("PinkCake")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(20)
-                        VStack{
-                            HStack{
-                                Text("Ree")
-                                    .padding()
-                                
-                                    .background(Color("ForestGreen"))
-                                    .clipShape(Capsule())
-                                    .frame(alignment: .topLeading)
-                                Text("Experience")
-                                    .padding()
-                                
-                                    .background(Color("Light Tan"))
-                                    .clipShape(Capsule())
-                                    .frame(alignment: .topLeading)
-                                Text("Class")
-                                    .padding()
-                                
-                                    .background(Color("Light Tan"))
-                                    .clipShape(Capsule())
-                                    .frame(alignment: .topLeading)
-                                Spacer()
+                            if isExpandedPastry {
+                                Text("Learn to make your own croissants!!! The centrally located La Cuisine Paris cooking school has a range of culinary course in English. Sign up to for this delicious activity!")
                             }
-                            Spacer()
                         }
                         .padding()
+                        .frame(maxWidth: .infinity)
+                        .transition(.move(edge: .bottom))
+                        .background(.regularMaterial)
+                        .cornerRadius(15)
+                        .onTapGesture {
+                            withAnimation {
+                                isExpandedPastry.toggle()
+                            }
+                        }
                     }
+                    .padding()
                 }
-                .padding()
+                
+                ZStack{
+                    Image("ClamPasta")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(20)
+                    VStack{
+                        HStack{
+                            Text("Ree")
+                                .padding()
+                            
+                                .background(Color("Salmon"))
+                                .clipShape(Capsule())
+                                .frame(alignment: .topLeading)
+                            Text("Experience")
+                                .padding()
+                            
+                                .background(Color("Light Tan"))
+                                .clipShape(Capsule())
+                                .frame(alignment: .topLeading)
+                            Text("Class")
+                                .padding()
+                            
+                                .background(Color("Light Tan"))
+                                .clipShape(Capsule())
+                                .frame(alignment: .topLeading)
+                            Spacer()
+                        }
+                        Spacer()
+                        
+                        VStack{
+                            VStack{
+                                HStack{
+                                    Image("Headshot")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 40, height: 40, alignment: .top)
+                                        .clipShape(Circle())
+                                    Text("Emma Hopson")
+                                    Spacer()
+                                    if heartStatusTrattoria == false{
+                                        Image(systemName: "heart")
+                                            .onTapGesture {
+                                                heartStatusTrattoria = true
+                                            }
+                                    }else{
+                                        Image(systemName: "heart.fill")
+                                            .onTapGesture {
+                                                heartStatusTrattoria = false
+                                            }
+                                    }
+                                    Image(systemName: "pin.fill")
+                                    Image(systemName: "message.badge")
+                                }
+                                Text("October 13, 2023")
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(alignment: .leading) //Don't know why this isn't doing anything
+                                Text("Cute New Italian Trattoria in The 6eme")
+                                    .aspectRatio(contentMode: .fill)
+                            }
+                            if isExpandedClams {
+                                Text("They had great seafood dishes including pasta alle vongole! They have a lovely atmosphere and lovely views.")
+                            }
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .transition(.move(edge: .bottom))
+                        .background(.regularMaterial)
+                        .cornerRadius(15)
+                        .onTapGesture {
+                            withAnimation {
+                                isExpandedClams.toggle()
+                            }
+                        }
+                        
+                    }
+                    .padding()
+                }
+                
+                ZStack{
+                    Image("PinkCake")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(20)
+                    VStack{
+                        HStack{
+                            Text("Ree")
+                                .padding()
+                            
+                                .background(Color("ForestGreen"))
+                                .clipShape(Capsule())
+                                .frame(alignment: .topLeading)
+                            Text("Experience")
+                                .padding()
+                            
+                                .background(Color("Light Tan"))
+                                .clipShape(Capsule())
+                                .frame(alignment: .topLeading)
+                            Text("Class")
+                                .padding()
+                            
+                                .background(Color("Light Tan"))
+                                .clipShape(Capsule())
+                                .frame(alignment: .topLeading)
+                            Spacer()
+                        }
+                        Spacer()
+                        
+                        VStack{
+                            VStack{
+                                HStack{
+                                    Image("Headshot")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 40, height: 40, alignment: .top)
+                                        .clipShape(Circle())
+                                    Text("Emma Hopson")
+                                    Spacer()
+                                    if heartStatusSweets == false{
+                                        Image(systemName: "heart")
+                                            .onTapGesture {
+                                                heartStatusSweets = true
+                                            }
+                                    }else{
+                                        Image(systemName: "heart.fill")
+                                            .onTapGesture {
+                                                heartStatusSweets = false
+                                            }
+                                    }
+                                    Image(systemName: "pin.fill")
+                                    Image(systemName: "message.badge")
+                                }
+                                Text("October 3, 2023")
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(alignment: .leading) //Don't know why this isn't doing anything
+                                Text("La Cuisine Paris: Dessert Cooking Class")
+                                    .aspectRatio(contentMode: .fill)
+                            }
+                            if isExpandedCake {
+                                Text("This new bakery has all of your sweet needs! With daily baked items this is sure to make your mouth water.")
+                            }
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .transition(.move(edge: .bottom))
+                        .background(.regularMaterial)
+                        .cornerRadius(15)
+                        .onTapGesture {
+                            withAnimation {
+                                isExpandedCake.toggle()
+                            }
+                        }
+                    }
+                    .padding()
+                }
             }
+            .padding()
         }
-        .navigationTitle("")
     }
+        .navigationTitle("")
+}
 }
 
 #Preview {
